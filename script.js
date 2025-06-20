@@ -1,88 +1,96 @@
-// values: string,
-// numbers (integers, floats), booleans(true, false), undefined, null primitive types
+// // regular flow
+// // function deffer execution
 
-//camelCase styling
-// let x const
-// type safety (js loosely type language)
+// // control structure
 
-// const age = prompt("What's your age?");
+// //conditional
 
-// document.getElementById("userInputEntry").innerText = age;
+// let isRaining = 0; // truthy {}, true, [], Date| falsy (0, NaN, undefined, null, "", false) => false
+// let isSnowing = 2;
 
-// let age = "32";
-// let age2 = age;
-// age2 = age2 + "hi";
+// if (isRaining) {
+//   console.log("bring an umbrella");
+// } else if (isSnowing) {
+//   console.log("Bring a heavy jacket");
+// } else {
+//   console.log("Enjoy the sunshine");
+// }
 
-// console.log(age);
-// console.log(age2);
+// const daysOfTheWeek = [
+//   "sunday",
+//   "monday",
+//   "tuesday",
+//   "wednesday",
+//   "thursday",
+//   "friday",
+//   "saturday",
+// ];
 
-//reference type values
+// const currentDay = daysOfTheWeek[1];
 
-//objects and arrays, function, sets
-
-function sum(numb1, numb2) {
-  console.log(numb1 + numb2);
-}
-
-const person = {
-  name: "Ygor",
-  age: 32,
-  address: {
-    number: 123,
-    streetName: "Main St",
-  },
-}; // 0x0032 location
-
-//Deep copy
-const person2 = person;
-
-// person2.name = "Bibu";
-
-console.log(person === person2); // ?
-console.log(person); // name: Ygor
-console.log(person2); // name: Bibu
-
-// class Person {
-//   constructor(name, age) {
-//     this.name = name;
-//     this.age = age;
+// switch (currentDay) {
+//   case daysOfTheWeek[0]: {
+//     console.log("going to the park");
+//     break;
+//   }
+//   case daysOfTheWeek[2]: {
+//     console.log("COMIT Class");
+//     break;
+//   }
+//   default: {
+//     console.log("TBD");
 //   }
 // }
 
-// const person3 = new Person("Ygor", 32);
-// const person4 = new Person("Bibu", 22);
+// // if (isRaining) {
+// //   console.log("bring an umbrella");
+// // }
 
-// person3.address = "hello";
+// // if (isSnowing) {
+// //   console.log("Bring a heavy jacket");
+// // } else {
+// //   console.log("Enjoy the sunshine");
+// // }
 
-// console.log(person3);
-// console.log(person4);
+// // loops
 
-// Array (lists)
+// const myHobbies = ["football", "swimming", "eating pizza"]; // length 3
 
-//inetrate
-//add an item to the end
-// get first element
+// // myHobbies.forEach((i) => console.log(i));
 
-/* const objArr = {
-    0: "soccer",
-    1: "eating out",
-    2: "hahah"
- }
-*/
+// // for (let counter = 0; counter < 10; counter++) {
+// //   if (counter === 2) {
+// //     break;
+// //   }
+// //   console.log(counter);
+// // }
 
-const myHobbies = ["soccer", "eating out", "hahaha"];
+// // infinity loop
 
-const myNewArray = [...myHobbies];
+// let counter = 6;
 
-myNewArray[2] = "changed";
+// while (counter < 5) {
+//   console.log(counter);
+//   counter++;
+// }
 
-console.log(myHobbies); //["soccer", "eating out", "hahaha"];
-console.log(myNewArray); //["soccer", "eating out", "changed"];
+// // NaN // FALSY
+// // piece of code to be used at Least once
+// // let userAge;
+// // do {
+// //   userAge = Number(prompt("What's your age?")) || 0;
+// // } while (userAge < 18);
 
-const numbers = [1, 3, 7, 13, 96, -5, 32];
+// for (const hobbie of myHobbies) {
+//   console.log(hobbie);
+// }
 
-sum(3, 6);
-sum(2, 1);
-sum(1, 3);
-sum(2, 8);
-sum(3, 6);
+const person = {
+  name: "ygor",
+  age: 32,
+};
+
+for (const property in person) {
+  console.log("Key: " + property);
+  console.log("Value: " + person[property]);
+}
