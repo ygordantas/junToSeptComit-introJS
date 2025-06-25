@@ -5,10 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <script src="/script.js" type="module" defer></script>
-    <title>Intro JS</title>
+    <title>COMIT TODO APP</title>
   </head>
   <body>
-    <h1 id="header">Intro to 33</h1>
-    <p id="userInputEntry"></p>
+    <header>
+      <h1>comITodo'S</h1>
+    </header>
+    <main>
+      <button id="showTodoFormBtn">+ ADD</button>
+      <ul id="todoList"></ul>
+    </main>
+    <dialog id="dialog">
+      <button id="closeDialogBtn">X</button>
+      <form id="todoForm" method="dialog">
+        <textarea name="" id="todo"></textarea>
+        <input type="submit" value="submit" />
+      </form>
+    </dialog>
   </body>
 </html>
