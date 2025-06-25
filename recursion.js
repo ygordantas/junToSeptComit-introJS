@@ -1,5 +1,5 @@
 //10
-function countDown(startingCount) {
+export function countDown(startingCount) {
   console.log(startingCount);
 
   // base case (condition to exit the recursion)
@@ -22,7 +22,7 @@ function countDown(startingCount) {
 // you gotta use recursion (NO LOOPS ALLOWED)
 
 //
-function fibonacci(n) {
+export function fibonacci(n) {
   // base case
   if (n <= 1) return 0;
   if (n === 2) return 1;
@@ -37,3 +37,5 @@ console.log(fibonacci(5));
 // fibonacci(3) => fibonacci(2) + fibonacci(1) => 1 + 0 = 1
 // fibonacci(4) => fibonacci(3) + fibonacci(2) => 1 + 1 = 2
 // fibonacci(5) => fibonacci(4) + fibonacci(3) => 2 + 1 = 3
+
+export default "ABC";
