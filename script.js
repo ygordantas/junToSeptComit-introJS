@@ -19,8 +19,15 @@ todoForm.addEventListener("submit", () => {
   const timestamp = document.createElement("p");
   const deleteBtn = document.createElement("button");
 
+  newTodoContainer.classList.add("fade-in");
+
   deleteBtn.addEventListener("click", () => {
-    newTodoContainer.remove();
+    newTodoContainer.classList.remove("fade-in");
+    newTodoContainer.classList.add("fade-out");
+
+    setTimeout(() => {
+      newTodoContainer.remove();
+    }, 300);
   });
 
   deleteBtn.innerHTML = "delete";
