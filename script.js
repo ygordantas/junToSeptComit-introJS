@@ -4,9 +4,6 @@ const todoList = document.getElementById("todoList");
 const todoForm = document.getElementById("todoForm");
 const closeDialogBtn = document.getElementById("closeDialogBtn");
 
-let todos = [];
-let nextId = 1;
-
 showTodoFormBtn.addEventListener("click", () => {
   dialog.showModal();
 });
@@ -23,9 +20,7 @@ todoForm.addEventListener("submit", () => {
   const deleteBtn = document.createElement("button");
 
   deleteBtn.addEventListener("click", () => {
-    todos = todos.filter((e) => e.id !== nextId);
-    console.log(todos);
-    console.log(nextId);
+    newTodoContainer.remove();
   });
 
   deleteBtn.innerHTML = "delete";
@@ -40,14 +35,4 @@ todoForm.addEventListener("submit", () => {
   todoList.prepend(newTodoContainer);
 
   textarea.value = "";
-
-  todos.push({
-    id: nextId,
-    text: todoText.innerHTML,
-    timestamp: currentDate,
-  });
-
-  nextId++;
-
-  console.log(todos);
 });
