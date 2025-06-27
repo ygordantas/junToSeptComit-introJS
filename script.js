@@ -3,21 +3,61 @@ const showTodoFormBtn = document.getElementById("showTodoFormBtn");
 const todoList = document.getElementById("todoList");
 const todoForm = document.getElementById("todoForm");
 const closeDialogBtn = document.getElementById("closeDialogBtn");
+const textarea = document.getElementById("todo");
+const progressBar = document.getElementById("dialogClosingTimer");
+const closeDialogTime = 150000;
+
+let intervalId;
+let timeoutId;
+
+const onDialogCloseHandler = () => {
+  dialog.close();
+  clearInterval(intervalId);
+  clearTimeout(timeoutId);
+  textarea.value = "";
+};
+
+const createBtn = (buttonText, classes) => {
+  const btn = document.createElement("button");
+
+  btn.innerHTML = buttonText;
+  btn.classList.add("btn");
+
+  if (classes && classes.length > 0) {
+    btn.classList.add(classes);
+  }
+
+  return btn;
+};
 
 showTodoFormBtn.addEventListener("click", () => {
   dialog.showModal();
+  let timeLeft = closeDialogTime;
+  progressBar.max = closeDialogTime;
+
+  intervalId = setInterval(() => {
+    timeLeft -= 100;
+    progressBar.value = timeLeft;
+  }, 100);
+
+  timeoutId = setTimeout(() => {
+    onDialogCloseHandler();
+    timeLeft = closeDialogTime;
+  }, closeDialogTime);
 });
 
 closeDialogBtn.addEventListener("click", () => {
-  dialog.close();
+  onDialogCloseHandler();
 });
 
 todoForm.addEventListener("submit", () => {
-  const textarea = document.getElementById("todo");
   const newTodoContainer = document.createElement("li");
+  const textContainer = document.createElement("div");
   const todoText = document.createElement("p");
+  const actionContainer = document.createElement("div");
   const timestamp = document.createElement("p");
-  const deleteBtn = document.createElement("button");
+  const deleteBtn = createBtn("x", "danger");
+  const editBtn = createBtn("edit", "primary");
 
   newTodoContainer.classList.add("fade-in");
 
@@ -30,17 +70,23 @@ todoForm.addEventListener("submit", () => {
     }, 300);
   });
 
-  deleteBtn.innerHTML = "delete";
-  deleteBtn.classList.add("btn");
-
-  const currentDate = new Date();
+  editBtn.addEventListener("click", () => {
+    //TODO
+  });
 
   todoText.innerHTML = textarea.value;
-  timestamp.innerHTML = currentDate.toLocaleDateString();
+  timestamp.innerHTML = new Date().toLocaleDateString();
+  timestamp.classList.add("timestamp");
 
-  newTodoContainer.append(todoText, timestamp, deleteBtn);
+  textContainer.classList.add("text-container");
+  actionContainer.classList.add("action-container");
+
+  textContainer.append(todoText);
+  actionContainer.append(timestamp, editBtn, deleteBtn);
+
+  newTodoContainer.append(textContainer, actionContainer);
 
   todoList.prepend(newTodoContainer);
 
-  textarea.value = "";
+  onDialogCloseHandler();
 });

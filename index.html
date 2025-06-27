@@ -12,14 +12,17 @@
       <h1>comITodo'S</h1>
     </header>
     <main>
-      <button class="btn" id="showTodoFormBtn">+ ADD</button>
+      <button class="btn primary" id="showTodoFormBtn">+ ADD</button>
       <ul id="todoList"></ul>
     </main>
     <dialog id="dialog">
-      <button class="btn" id="closeDialogBtn">X</button>
+      <div class="dialog-close-btn-container">
+        <button class="btn danger" id="closeDialogBtn">X</button>
+      </div>
       <form id="todoForm" method="dialog">
+        <progress id="dialogClosingTimer"></progress>
         <textarea name="" id="todo"></textarea>
-        <input class="btn" type="submit" value="submit" />
+        <input class="btn primary" type="submit" value="submit" />
       </form>
     </dialog>
   </body>
