@@ -6,6 +6,7 @@ const closeDialogBtn = document.getElementById("closeDialogBtn");
 const textarea = document.getElementById("todo");
 const progressBar = document.getElementById("dialogClosingTimer");
 const closeDialogTime = 150000;
+let editingTodoElement;
 
 let intervalId;
 let timeoutId;
@@ -17,20 +18,7 @@ const onDialogCloseHandler = () => {
   textarea.value = "";
 };
 
-const createBtn = (buttonText, classes) => {
-  const btn = document.createElement("button");
-
-  btn.innerHTML = buttonText;
-  btn.classList.add("btn");
-
-  if (classes && classes.length > 0) {
-    btn.classList.add(classes);
-  }
-
-  return btn;
-};
-
-showTodoFormBtn.addEventListener("click", () => {
+const onDialogOpenHandler = () => {
   dialog.showModal();
   let timeLeft = closeDialogTime;
   progressBar.max = closeDialogTime;
@@ -44,13 +32,22 @@ showTodoFormBtn.addEventListener("click", () => {
     onDialogCloseHandler();
     timeLeft = closeDialogTime;
   }, closeDialogTime);
-});
+};
 
-closeDialogBtn.addEventListener("click", () => {
-  onDialogCloseHandler();
-});
+const onSubmitEditedTodo = (todoTextValue) => {
+  const textNode = editingTodoElement.querySelector("p");
+  const timestampNode = editingTodoElement.querySelector(".timestamp");
 
-todoForm.addEventListener("submit", () => {
+  textNode.innerHTML = todoTextValue;
+  timestampNode.innerHTML = new Date().toLocaleDateString();
+
+  editingTodoElement.classList.remove("fade-in");
+  editingTodoElement.classList.add("edited");
+
+  editingTodoElement = null;
+};
+
+const onSubmitNewTodo = (todoTextValue) => {
   const newTodoContainer = document.createElement("li");
   const textContainer = document.createElement("div");
   const todoText = document.createElement("p");
@@ -71,10 +68,12 @@ todoForm.addEventListener("submit", () => {
   });
 
   editBtn.addEventListener("click", () => {
-    //TODO
+    textarea.value = todoText.innerHTML;
+    editingTodoElement = newTodoContainer;
+    onDialogOpenHandler();
   });
 
-  todoText.innerHTML = textarea.value;
+  todoText.innerHTML = todoTextValue;
   timestamp.innerHTML = new Date().toLocaleDateString();
   timestamp.classList.add("timestamp");
 
@@ -85,8 +84,34 @@ todoForm.addEventListener("submit", () => {
   actionContainer.append(timestamp, editBtn, deleteBtn);
 
   newTodoContainer.append(textContainer, actionContainer);
-
   todoList.prepend(newTodoContainer);
+};
+
+const createBtn = (buttonText, classes) => {
+  const btn = document.createElement("button");
+
+  btn.innerHTML = buttonText;
+  btn.classList.add("btn");
+
+  if (classes && classes.length > 0) {
+    btn.classList.add(classes);
+  }
+
+  return btn;
+};
+
+showTodoFormBtn.addEventListener("click", onDialogOpenHandler);
+
+closeDialogBtn.addEventListener("click", onDialogCloseHandler);
+
+todoForm.addEventListener("submit", () => {
+  const todoTextValue = textarea.value;
+
+  if (editingTodoElement) {
+    onSubmitEditedTodo(todoTextValue);
+  } else {
+    onSubmitNewTodo(todoTextValue);
+  }
 
   onDialogCloseHandler();
 });
