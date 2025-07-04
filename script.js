@@ -50,7 +50,14 @@ closeDialogBtn.addEventListener("click", () => {
   onDialogCloseHandler();
 });
 
-todoForm.addEventListener("submit", () => {
+todoForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (!textarea.value.trim()) {
+    alert("Your todo is empty. Please provide a value before saving it.");
+    return;
+  }
+
   const newTodoContainer = document.createElement("li");
   const textContainer = document.createElement("div");
   const todoText = document.createElement("p");
@@ -90,3 +97,10 @@ todoForm.addEventListener("submit", () => {
 
   onDialogCloseHandler();
 });
+
+// EXERCISE:
+// As user I want to be able to edit my existing todos
+// once I click on the edit button, the dialog form should open with the
+// todo text prepopulated.
+// Once I hit save I want to see my todo updated in the list
+// (Optional) => add some animation once we return to the list

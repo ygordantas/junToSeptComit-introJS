@@ -20,9 +20,15 @@
         <button class="btn danger" id="closeDialogBtn">X</button>
       </div>
       <form id="todoForm" method="dialog">
+        <textarea
+          placeholder="enter your todo here"
+          rows="5"
+          cols="70"
+          name=""
+          id="todo"
+        ></textarea>
+        <input class="btn primary" type="submit" value="save" />
         <progress id="dialogClosingTimer"></progress>
-        <textarea name="" id="todo"></textarea>
-        <input class="btn primary" type="submit" value="submit" />
       </form>
     </dialog>
   </body>
