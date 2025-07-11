@@ -1,4 +1,4 @@
-# 🧠 React + TypeScript Assignment: **Click Speed Test Game (Beginner Version)**
+# 🧠 React + TypeScript Assignment: **Click Speed Test Game**
 
 ## 📝 Overview
 
