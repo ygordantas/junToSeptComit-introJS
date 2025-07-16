@@ -64,3 +64,24 @@ Create a `Button` component with these features:
 <Button as="a" href="https://example.com">Go to Site</Button>
 
 <Button ref={buttonRef}>With Ref</Button>
+
+```
+
+## ✅ Submission Checklist
+
+- [ ] Modal renders correctly using a portal
+- [ ] Clicking outside the modal or pressing Escape closes it
+- [ ] Button component works as button, a, etc.
+- [ ] ref forwarding works
+- [ ] Code is typed properly with TypeScript
+- [ ] Default props are correctly applied
+- [ ] No console errors or warnings
+      
+## ✨ Bonus Features (Optional)
+
+- [ ] Add basic focus trap support for Modal
+- [ ] Add animation to the Modal (fade in/out)
+- [ ] Add a backdrop blur effect
+- [ ] Add a size prop to Button (sm, md, lg)
+
+
